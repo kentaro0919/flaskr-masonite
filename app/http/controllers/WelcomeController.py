@@ -2,6 +2,7 @@
 
 from masonite.view import View
 from masonite.request import Request
+from masonite.auth import Auth
 
 
 class WelcomeController:
@@ -17,6 +18,8 @@ class WelcomeController:
         Returns:
             masonite.view.View -- The Masonite view class.
         """
-        return view.render('welcome', {
-            'app': request.app().make('Application')
-        })
+        if not Auth(request).user():
+            request.redirect('/login')
+        else:
+            request.redirect('/blog')
+        return view.render('welcome', {'Auth': Auth(request)})

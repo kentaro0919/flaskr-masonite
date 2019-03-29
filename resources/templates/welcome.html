@@ -1,41 +1,22 @@
-<!doctype html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block header %}
+    <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
 
-    <title>{{ app.NAME }}</title>
+{% block content %}
+    <form method="post" action="/register" >
+    {{ csrf_field }}
+        <label for="name">name</label>
+        <input name="name" id="name" required>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <label for="email">email</label>
+        <input type="email" name="email" id="email" required>
 
-    <!-- Application CSS -->
-    <link href="/static/style.css" rel="stylesheet" type="text/css">
-</head>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
 
-<body>
-    <div class="flex-center position-ref full-height">
+        <input type="submit" value="Register">
+    </form>
+{% endblock %}
 
-        <div class="content">
-            <div class="title m-b-md">
-                {{ app.NAME }}
-            </div>
-
-            <div class="links">
-                <a href="https://github.com/MasoniteFramework/masonite">The Modern And Developer Centric Python Web Framework</a>
-            </div>
-            <br><br>
-
-            <div class="links">
-                <a href="https://github.com/MasoniteFramework/masonite">Github</a>
-                <a href="https://docs.masoniteproject.com">Documentation</a>
-                <a href="https://github.com/MasoniteFramework/core">Masonite Core</a>
-                <a href="https://slack.masoniteproject.com">Slack</a>
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
